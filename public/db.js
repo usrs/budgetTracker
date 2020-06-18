@@ -11,10 +11,10 @@ request.onupgradeneeded = event => {
 }
 
 request.onsuccess = event => {
-  db.target.result
+  db = event.target.result
 
   if(navigator.onLine) {
-
+    checkDatabase()
   }
 }
 
@@ -23,8 +23,8 @@ request.onerror = event => {
 }
 
 const saveItem = item => {
-  const transaction = db.transaction(["pending"], "readwrite")
-  const store = transaction.objectStore("pending")
+  const transaction = db.transaction(['pending'], 'readwrite')
+  const store = transaction.objectStore('pending')
   store.add(item)
 }
 
